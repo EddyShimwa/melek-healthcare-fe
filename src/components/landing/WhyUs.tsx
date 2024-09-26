@@ -1,9 +1,10 @@
 import { useState } from "react";
 import useCompanyProfile from "../../hooks/useCompanyProfile";
-import Heading from "../common/Heading";
-import Plus from "../SVGs/Plus";
-import Minus from "../SVGs/Minus";
 import useWhyUs from "../../hooks/useWhyUs";
+import Heading from "../common/Heading";
+import Loader from "../common/Loader";
+import Minus from "../SVGs/Minus";
+import Plus from "../SVGs/Plus";
 
 const WhyUs = () => {
 	const { data: companyProfile } = useCompanyProfile();
@@ -12,12 +13,15 @@ const WhyUs = () => {
 
 	if (error) throw new Error(error.message);
 
-	if (isLoading) return "loading...";
+	if (isLoading) return <Loader />;
 
 	return (
-		<div className="flex flex-col items-start justify-center w-11/12 mx-auto py-20">
+		<div
+			id="why_us"
+			className="flex flex-col items-start justify-center w-11/12 mx-auto py-20"
+		>
 			<Heading title="WHY US?" />
-			<div className="grid grid-cols-1 lg:grid-cols-2 w-full h-screen lg:h-[60vh] mt-10">
+			<div className="grid grid-cols-1 lg:grid-cols-2 w-full max-h-screen h-max lg:h-[60vh] mt-10">
 				<div className="hidden lg:block">
 					<img
 						src={companyProfile?.data.why_us_image_url}

@@ -31,4 +31,20 @@
 	.swiper-custom .swiper-button-prev::after {
 		@apply text-white bg-gray-600/50 font-bold text-lg md:text-xl;
 	}
+
+	.swiper-custom-class {
+		--swiper-navigation-color: #fff;
+		--swiper-pagination-color: #fff;
+		overflow: visible;
+	}
+
+	.swiper-custom-class .swiper-button-next,
+	.swiper-custom-class .swiper-button-prev {
+		@apply bg-gray-600 rounded-full w-[40px] md:w-[50px] h-[40px] md:h-[50px] flex items-center justify-center;
+	}
+
+	.swiper-custom-class .swiper-button-next::after,
+	.swiper-custom-class .swiper-button-prev::after {
+		@apply text-white bg-gray-600/50 font-bold text-lg md:text-xl;
+	}
 }

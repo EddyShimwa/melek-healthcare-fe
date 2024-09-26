@@ -1,12 +1,13 @@
-import { useRef, useEffect } from "react";
+import { useEffect, useRef } from "react";
+import { Navigation, Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 import useCompanyProfile from "../../hooks/useCompanyProfile";
 import Heading from "../common/Heading";
-import { Pagination, Navigation } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
 import "swiper/css/navigation";
 import useValues from "../../hooks/useValue";
+import Loader from "../common/Loader";
 
 const Values = () => {
 	const { data } = useCompanyProfile();
@@ -31,7 +32,7 @@ const Values = () => {
 
 	if (error) throw new Error(error.message);
 
-	if (isLoading) return "loading...";
+	if (isLoading) return <Loader />;
 
 	return (
 		<div id="values" className="min-h-[80vh] w-screen relative mt-20">

@@ -6,13 +6,14 @@ import Heading from "../common/Heading";
 
 import "swiper/css";
 import "swiper/css/navigation";
+import Loader from "../common/Loader";
 
 const Milestone = () => {
 	const { data, isLoading, error } = useMilestones();
 
 	if (error) throw new Error(error.message);
 
-	if (isLoading) return "loading...";
+	if (isLoading) return <Loader />;
 
 	return (
 		<div className="flex flex-col items-center justify-center py-20">

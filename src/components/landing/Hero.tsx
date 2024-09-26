@@ -1,11 +1,11 @@
-import { useRef, useEffect } from "react";
+import { useEffect, useRef } from "react";
 import useCompanyProfile from "../../hooks/useCompanyProfile";
 import { scrollTo } from "../../utils/scrollTo";
+import Loader from "../common/Loader";
 
 const Hero = () => {
-	const { data, error, isLoading } = useCompanyProfile();
-
 	const videoRef = useRef<HTMLVideoElement>(null);
+	const { data, error, isLoading } = useCompanyProfile();
 
 	useEffect(() => {
 		const video = videoRef.current;
@@ -25,7 +25,7 @@ const Hero = () => {
 
 	if (error) throw new Error(error.message);
 
-	if (isLoading) return "loading...";
+	if (isLoading) return <Loader />;
 
 	return (
 		data && (

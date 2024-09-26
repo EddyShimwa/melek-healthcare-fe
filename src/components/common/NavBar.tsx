@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { navItems } from "../../data/navItems";
 import { logo } from "../../utils/images";
 import useCompanyProfile from "../../hooks/useCompanyProfile";
@@ -10,6 +10,23 @@ const NavBar = () => {
 	if (error) throw new Error(error.message);
 
 	const [isActive, setIsActive] = useState(false);
+	const [hasScrolled, setHasScrolled] = useState(false);
+
+	useEffect(() => {
+		const handleScroll = () => {
+			if (window.scrollY > 800) {
+				setHasScrolled(true);
+			} else {
+				setHasScrolled(false);
+			}
+		};
+
+		window.addEventListener("scroll", handleScroll);
+
+		return () => {
+			window.removeEventListener("scroll", handleScroll);
+		};
+	}, []);
 
 	return (
 		<section className="fixed w-screen inset-0 flex h-24 z-50">
@@ -27,7 +44,9 @@ const NavBar = () => {
 				</div>
 			</div>
 			<div className="flex-1 h-full hidden md:block">
-				<div className="h-1/2 flex items-center justify-end px-5 gap-20 text-gray-200 text-xs">
+				<div
+					className={`h-1/2 flex items-center justify-end px-5 gap-20 text-xs ${hasScrolled ? "bg-white text-gray-800" : "text-gray-200"}`}
+				>
 					<p>
 						<strong>Tel:</strong> {data?.data.phone_number}
 					</p>
@@ -89,7 +108,11 @@ const NavBar = () => {
 								aria-labelledby="dropdownDefaultButton"
 							>
 								{navItems.map(({ id, title }) => (
-									<li key={id} className="block px-4 py-2 hover:bg-gray-100">
+									<li
+										key={id}
+										onClick={() => scrollTo(id)}
+										className="block px-4 py-2 hover:bg-gray-100"
+									>
 										{title}
 									</li>
 								))}
