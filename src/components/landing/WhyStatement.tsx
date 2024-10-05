@@ -16,13 +16,12 @@ const WhyStatement = () => {
 					alt="why image"
 					className="h-full hidden lg:block"
 				/>
-				<div className="text-sm">
-					{data?.data.why_statement.split(".").map((item, index) => (
-						<div key={index} className="mb-3">
-							{item}.
-						</div>
-					))}
-				</div>
+				<div
+					className="prose max-w-none text-sm"
+					dangerouslySetInnerHTML={{
+						__html: data?.data.why_statement as string,
+					}}
+				/>
 			</div>
 		</div>
 	);
