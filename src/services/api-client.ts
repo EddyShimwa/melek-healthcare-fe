@@ -45,11 +45,14 @@ API.interceptors.response.use(
 	(error: AxiosError) => errorHandler(error),
 );
 
-class APIClient<T> {
+class APIClient<T, RequestType = void> {
 	constructor(public readonly endpoint: string) {}
 
 	fetch = (config: AxiosRequestConfig) =>
 		API.get<FetchResponse<T>>(this.endpoint, config).then((res) => res.data);
+
+	post = (data: RequestType, config?: AxiosRequestConfig) =>
+		API.post<T>(this.endpoint, data, config).then((res) => res.data);
 }
 
 export default APIClient;
