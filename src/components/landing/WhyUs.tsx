@@ -29,7 +29,7 @@ const WhyUs = () => {
 						className="object-cover w-full h-full"
 					/>
 				</div>
-				<div className="py-5 px-10 h-full overflow-y-scroll">
+				<div className="py-5 px-10 h-full overflow-y-auto">
 					{data?.data.map((item) => (
 						<div key={item.id} className="mt-5">
 							<div className="flex items-center justify-between">
@@ -38,6 +38,7 @@ const WhyUs = () => {
 									onClick={() =>
 										setActiveId(activeId === item.id ? null : item.id)
 									}
+									className="cursor-pointer"
 								>
 									{activeId === item.id ? <Minus /> : <Plus />}
 								</div>
